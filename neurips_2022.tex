@@ -1,0 +1,276 @@
+\documentclass{article}
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2022
+
+
+% ready for submission
+\usepackage{neurips_2022}
+
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+%     \usepackage[preprint]{neurips_2022}
+
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+%     \usepackage[final]{neurips_2022}
+
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2022}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+%\usepackage{xcolor}         % colors
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{lineno}
+\usepackage{txfonts}
+\usepackage{color}
+\usepackage{comment}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\floatname{algorithm}{Algorithm}
+\usepackage{thmtools,thm-restate}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
+\hypersetup{
+	colorlinks=true,
+	citecolor=Blue,
+	linkcolor=Blue,
+}
+\usepackage{tikz}
+%define a marking command
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{calc}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+
+
+\title{Formatting Instructions For NeurIPS 2022}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+\author{%
+  David S.~Hippocampus\thanks{Use footnote for providing further information
+    about author (webpage, alternative address)---\emph{not} for acknowledging
+    funding agencies.} \\
+  Department of Computer Science\\
+  Cranberry-Lemon University\\
+  Pittsburgh, PA 15213 \\
+  \texttt{hippo@cs.cranberry-lemon.edu} \\
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{abstract}
+  The abstract paragraph should be indented \nicefrac{1}{2}~inch (3~picas) on
+  both the left- and right-hand margins. Use 10~point type, with a vertical
+  spacing (leading) of 11~points.  The word \textbf{Abstract} must be centered,
+  bold, and in point size 12. Two line spaces precede the abstract. The abstract
+  must be limited to one paragraph.
+\end{abstract}
+
+
+\section{Constraint-based causal discovery algorithm}
+Constraint-based causal discovery methods determine the causal structure through statistical dependencies between variables. Independence tests and Conditional Independence (CI) tests are key tools for testing statistical dependencies. As a start, we first give a brief introduction to them.
+
+Let $X,Y,Z$ be the random variables, $P_X,P_Y,P_Z$ be their probability density functions and $P_{XY}$ be the joint probability function of $(X,Y)$. Then $X\perp\!\!\!\perp Y$ is equivalent to $P_{XY}=P_XP_Y$. From an information-theoretic point of view, the independence of $X,Y$ is equivalent to the mutual information $I(X,Y)$ between them being zero. Conditional Independence tests are more general than independence tests. Let $P_{X|Z},P_{Y|Z}$ be the conditional probability of $X,Y$  and $P_{XY|Z}$ be the conditional joint probability function of $(X,Y)$ with $Z$ as the conditional variable, then $X\perp\!\!\!\perp Y|Z$ is equivalent to $P_{XY|Z} = P_{X|Z}P_{Y|Z}$. For practical purposes, conditional independence tests are usually written as hypothesis tests:
+\begin{equation*}
+	\mathcal{H}_0: X\perp\!\!\!\perp Y|Z ~~~~~\text{versus}~~~~~ \mathcal{H}_1: X\not\! \perp\!\!\!\perp Y|Z.
+\end{equation*}
+where we refer to $\mathcal{H}_0$ as the null hypothesis and $\mathcal{H}_1$ as the corresponding alternative hypothesis. The independence test can be written as a hypothesis test by simply replacing the condition set with the empty set.
+Next, we describe some specific (conditional) independence testing methods.
+
+\textbf{Independence Test} According to the type of data, the data can be divided into discrete data and continuous data. For discrete (categorical) data, the commonly used independent tests are $\mathcal{F}$-test~\citep{tiku1967tables} and Chi-squared test~\citep{greenwood1996guide}. These type of test methods determine independence by the specific distribution (e.g. $\mathcal{F}$-distribution, $\chi^2$-distribution) of the statistic under the null hypothesis. Independence testing for the continuous variables is more challenging than for the discrete case. The Pearson correlation coefficient~\citep{benesty2009pearson} is often used to measure the correlation between variables. This coefficient is widely used but reflects only linear dependence. In order to measure richer dependence, a class of distance correlation~\citep{szekely2014partial} metrics was proposed. Such methods detect nonlinear dependence between variables by means of different metric functions (e.g. energy distance~\citep{rizzo2016energy}). After that, a class of kernel-based independence testing~\citep{KCC,coco,gretton2003kernel,HSIC} was proposed. These methods are mainly based on the framework proposed by R{\'e}nyi~\citep{renyi1959measures} to measure the nonlinear dependence of variables by sufficiently adequate mappings under function classes. Under the reproducing kernel Hilbert space (RKHS)~\citep{RKHS} space, the kernel function is defined as a distance metric induced by the inner product of the feature mapping. Under the RKHS space, the kernel function is defined as a distance metric induced by the inner product of feature mappings. One widely used class of kernel-based independence tests is the Hilbert Schmidt Independence Criterion (HSIC)~\citep{HSIC}, which measures dependence by the squared \textit{Hilbert-Schmidt norm} induced by the cross-covariance operators in the RKHS space. From the perspective of distance metric, HSIC can be regarded as the squared Maximum Mean Discrepancy~\citep{gretton2012kernel} (MMD) distance between distribution $P_XP_Y$ and $P_{XY}$. After that, the random dependence coefficient~\citep{lopez2013randomized} (RDC) was proposed. Compared to the kernel-based method, RDC is computationally efficient. This method ensures the marginal invariance by copula transformation, and measures the dependence between variables by maximizing the correlation under random projection.
+
+\textbf{Conditional Independence Test} Conditional independent tests are generally more difficult than independent tests due to the hardness of estimating the conditional density distribution compared to the marginal distribution. A class of metric-based CI test~\citep{su2007consistent} employs a number of kernel smoothers to estimate conditional characteristic functions. This type of kernel smoothing estimation has a large computational cost when the condition set is high-dimensional.
+Another widely used method is kernel-based conditional independence testing such as KCIT~\citep{zhang2011kernel,zhang2012kernel}. KCIT is based on the partial
+association framework proposed by Daudin~\citep{daubechies1992ten} and uses conditional cross-correlation operators to identify conditional independence. KCIT is easy to implement in practice and works well, but due to its kernel regression steps (e.g. kernel ridge regression and Gaussian regression), the computational complexity increases rapidly as the dimension of the condition set grows. Later, the approximate kernel-based method RCIT~\citep{strobl2019approximate} was proposed. RCIT uses random fourier features to approximate the Gaussian kernel, resulting in an improvement in the computational efficiency of KCIT. Another class of regression-based~\citep{shah2020hardness,zhang2018measuring} methods for testing conditional independence. ReCIT~\citep{zhang2018measuring} tests conditional independence by measuring the independence between two residuals $X-\mathbf{E}[X|Z]$ and $Y-\mathbf{E}[Y|Z]$, where the two expectation terms were estimated by regression. Another class of methods~\citep{doran2014permutation,bellot2019conditional,shi2021double,runge2018conditional,sen2017model,mukherjee2020ccmi} obtains the distribution of the statistic under the null hypothesis by estimating the conditional density function or conditional mutual information, followed by a hypothesis test to determine conditional independence. The permutation-based method~\citep{doran2014permutation} obtains resampled samples $(X,PY,Z)$ of factorized distribution $P_{X|Z}P_{Y|Z}P_Z$ by performing permutations on the samples that satisfy a specific structure $(PZ\approx Z)$. Some other methods~\citep{bellot2019conditional,shi2021double}, using generative models (e.g. generative adversarial network) to estimate the conditional density. The method~\citep{runge2018conditional,mukherjee2020ccmi} uses k-nearest-neighbor (KNN) to obtain factorized distribution or estimate Kullback–Leibler (KL) divergence by classification to estimate conditional mutual information for judging conditional independence. Some model-based method~\citep{sen2017model} introduce powerful models to discriminate conditional independence by classifying to identifythe difference in distribution between $P_{X|Z}P_{Y|Z}$ and $P_{XY|Z}$.
+
+\textbf{PC Algorithm} We describe how to identify causal networks using (conditional) independence tests. In 1990, the well-known IC (Inductive Causation) algorithm~\citep{spirtes2000causation} and the PC (Peter-Clark) algorithm~\citep{spirtes1991algorithm} were proposed. The PC algorithm starts with a fully connected undirected graph and consists of three key steps. In the first step, the skeleton of the causal graph is obtained by performing an edge deletion operation according to the results of the independence and conditional independence tests. In the second step, the orientation of some edges is determined based on the V-structure. In the third step, constraint propagation is performed based on structural constraints such as acyclicity to determine the direction of some of the remaining undirected edges.
+% \begin{figure}[h]
+%   \centering
+%   \includegraphics[width=12cm]{image1.pdf}
+%   \caption{An example of PC algorithm implementation. Left: The procedure of PC algorithm and the ground truth causal graph. Right: The intuitive definition of the V-structure. }
+% \end{figure}
+\section{Causal function model-based causal discovery algorithm}
+
+
+\section{Causal Inference on grneralization}
+
+% 在各种任务上使用因果性而非相关性从而带来效果上的提升的都可以
+% 像few-shot，zero-shot这种的使用因果就比较明显
+% 可以关注一下这个组的文章，很多都是CV+因果的，NTU的张含望
+
+
+
+Generalizability is a critical problem in deep learning. Currently, many deep learning-based researches
+have achieved good performance on various tasks, but they assume the training dataset and test dataset
+are independent identically distribution. However, in many real tasks, this assumption is not valid.
+Take the famous image classification dataset ImageNet as an example, it has two popular versions, ImageNet-1k
+and Imagenet-21k. The previous one has smaller samples and categories, but the labels have better quality.
+ImageNet-21k is very big and includes many categories, however, the number of categories is still far
+from the real situation,
+and the distribution of samples is not the same as in the real environment. With the above shortcomings,
+algorithms learned from such datasets will contain biases from the dataset itself, which makes the
+algorithm performs well on a trained dataset, but is difficult to use on other datasets, as their
+performance may drop dramatically. Instead of improving performance when training and testing on
+the same dataset, many works are trying to improve the generalizability of the model and make the model
+still works well when training and testing data are out of distribution. Since causal inference
+provides a principled framework for modeling structural invariances, it is more interpretable and
+easier to identify selection bias. Therefore, using causal inference to improve model
+generalizability is a hot research area. Main research directions for causal
+inference on generalization are the following: out-of-distribution detection (OOD), open-set recognition (OSD),
+few-shot learning (FSL), and zero-shot learning (ZSL). In this section, we mainly discuss applications
+of above research directions on computer vision (CV).
+
+\paragraph{Out-of-distribution Detection and Open-set Recognition.}
+For conventional classification algorithms, they will always give a label to any input sample. However,
+the category of a sample may not exist in training, e.g. a model is trained to classify cats and dogs,
+but when an image of a bird is fed to the model, it will always give a wrong result, no matter the result
+is cat or dog. In OOD, the algorithm should recognize if the input does not belong to any category.
+For OOD generalization in CV, there are two major types of domain generalization: the multi-source
+domain generation and the single-source domain generation. In multi-source domain generation, the model
+knows the domain index \cite{ajakan2014domain,arjovsky2019invariant,li2018learning}.
+In single-source domain generation, the model treats all input is extracted from the same single domain
+\cite{albuquerque2019generalizing,hendrycks2021many,peng2019moment,wang2019learning}.
+As it lacks domain information, the problem is rather challenging. Causal inference is a novel principle
+for OOD detection, as it is more interpretable.
+%
+OSR problem is very similar to OOD, the major difference is that OOD only needs to identify whether input
+does not belong to any category, i.e. binary classification problem. But OSR needs to give the correct
+category if the input is not an outlier, so it is more difficult than OOD. A simple implementation for
+OSR first detects OOD, then followed by a normal classifier. However, this two-stage method not always
+performs well, as it cannot use the detailed classification results. As the result, some methods predict
+OOD and the category for in-distribution inputs jointly \cite{scheirer2012toward,gunther2017toward,scheirer2014probability}.
+%
+\cite{mao2022causal} focuses on out-of-distribution
+generalization problem, and extract the robust features from observational data through both causal
+and deep representations with some mild assumptions. \cite{pan2022causal} studied out-of-distribution
+on Visual Question Answering (VQA) problem, it designed a two-stage learning method, doing causal inference
+in the first stage, and distillation in the second stage.
+%
+\cite{yue2021counterfactual} solves open-set recognition problem using consistency rule to improve
+the counterfactual faithfulness, if the input doesn't fit the consistency rule, the input is considered an outlier.
+
+\paragraph{Few-shot Learning and Zero-shot Learning.}
+In FSL and ZSL, algorithms will be trained on training categories and tested on categories that are different
+from training categories. They can also receive attribute descriptions of inputs, and predict
+unseen categories based on these attributes \cite{lampert2009learning,xian2018zero}. In FSL, algorithms can fine-tune
+results on a very limited number of new categories (e.g. three samples). And in ZSL, algorithms
+should predict the category directly, without any additional training. The main difference compared
+with OOD and OSR is that FSL and ZSL do not need to distinguish outliers (all test inputs are outliers),
+but they should predict their categories. To solve the problem, instead of memorizing features
+of existing categories, algorithms should learn a generalized attributes representation, so
+they can classify unknown categories.
+%
+Some algorithms solve the problem by inferring a sample's attribute and finding the closest match
+\cite{akata2015label,chen2018zero,jiang2019transferable}. Another way to solve the problem is
+generating features using the attributes \cite{li2019leveraging,narayan2020latent,pambala2020generative}.
+%
+Recently, many algorithms use causal inference to solve FSL and ZSL. \cite{yue2020interventional} proposed
+interventional few-shot learning, it begins with a structural causal model, and uses causal intervention to
+solve the FSL problem. \cite{atzmon2020causal} considered the compositional zero-shot recognition problem and
+solve it with a causal perspective. It described a new embedding-based architecture that infers causally
+stable representations for compositional recognition.
+
+%\paragraph{Zero-shot Learning.}
+
+
+
+
+\section{Causal Inference in Solving the Fairness of Recommender Systems}
+
+The wide application of recommender systems in the industry has brought far-reaching significance and great practical value. However, Recommender systems usually amplify the biases in the data \cite{wang2021deconfounded}. The model learned from historical interactions with imbalanced item distribution will amplify the imbalance by over-recommending items from the majority groups. Addressing this issue is essential for a healthy ecosystem of recommendation in the long run. The latest work can be roughly summarize as the following four aspects.
+
+
+\textbf{Debiasing Learning and Evaluation} Most data for evaluating and training recommender systems is subject to selection biases, either through self-selection by the users or through the actions of the recommendation system itself. \cite{schnabel2016recommendations} provide a principled approach to handle selection biases by adapting models and estimation techniques from causal inference.this is one of the early papers that introduced causality into recommender systems, and it is very enlightening. \cite{sun2019debiasing} propose several debiasing algorithms during this chain of events, and evaluate how these algorithms impact the predictive behavior of the recommender systems, as well as trends in the popularity distribution of items over time. they also propose a novel blind-spot-aware matrix factorization (MF) algorithm to debias the recommender systems and achieved a higher debiasing effect
+on recommendations.\cite{zheng2021disentangling} uses causal embedding to decouple user interests and popular products, and use the collision effect in causal inference to de-bias.
+
+
+\textbf{Selection Bias} To bridge the gap between the final recommendation objective and the classical setup \cite{bonner2018causal} propose a new domain adaptation algorithm that learns from logged data
+containing outcomes from a biased recommendation policy and predicts recommendation outcomes according to random exposure. Using the method of causal inference to solve the problem of data selection bias in recommender systems has great enlightening significance.  \cite{ovaisi2020correcting} pay attention to correcting for selection bias, which occurs because clicked documents are reflective of what documents have been shown to the user in the first place. they propose new counterfactual approaches which adapt Heckman’s two-stage method and accounts for selection and position bias in LTR systems. Their empirical evaluation shows that our proposed methods are much more robust to noise and have better accuracy compared to existing unbiased LTR algorithms, especially when there is moderate to no position bias.
+
+
+\textbf{Popularity Bias} \cite{zhou2021contrastive} theoretically prove that a popular choice
+of contrastive loss is equivalent to reducing the exposure bias via inverse propensity weighting. Based on the theoretical discovery, they design CLRec to improve DCG in terms of fairness, effectiveness and efficiency in Recommender systems.\cite{wang2021deconfounded} propose a Deconfounded Recommender System (DecRS), which models the causal effect of user representation on the prediction score. The key to eliminating the impact of the confounder lies in backdoor adjustment, which is however difficult to do due to the infinite sample space of the confounder. For this challenge, they contribute an approximation operator for backdoor adjustment which can be easily plugged into most recommender models.\cite{zhang2021causal} studies an unexplored problem in recommendation — how to leverage popularity bias to improve the recommendation accuracy. The key lies in two aspects: how to remove the bad impact of popularity bias during training, and how to inject the desired popularity bias in the inference stage that generates top-$K$ recommendations. And they propose a new training and inference paradigm for recommendation named Popularity-bias Deconfounding and Adjusting (PDA). It removes the confounding popularity bias in model training and adjusts the recommendation score with desired popularity bias via causal intervention.
+
+
+\textbf{Counterfactual Fairness and Explainable Recommendation}
+the author of\cite{wei2021model} explore the popularity bias issue from a novel and fundamental perspective — cause-effect. They describes the causal relationship between some variables in the recommender system from the perspective of causal inference, and solves the influence of Popularity Bias on the model from the perspective of counterfactual reasoning. To eliminate popularity bias, it is essential to answer the counterfactual question. So they formulate a causal graph to describe the important cause-effect relations in the recommendation process and use counterfactual reasoning during model testing to eliminate the influence of popularity on recommendations. By providing explanations for users and system designers to facilitate better understanding and decision making, explainable recommendation has been an important research problem. \cite{tan2021counterfactual} propose Counterfactual Explainable Recommendation(CountER), which takes the insights of counterfactual reasoning from causal inference for explainable recommendation.
+
+
+
+
+
+\newpage
+{\small
+  %\bibliographystyle{unsrt}
+  \bibliographystyle{plain}
+  \bibliography{reference}
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\appendix
+
+
+\section{Appendix}
+
+
+Optionally include extra information (complete proofs, additional experiments and plots) in the appendix.
+This section will often be part of the supplemental material.
+
+
+\end{document}
